@@ -2,6 +2,7 @@ package org.mathieu.cleanrmapi.ui
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import org.koin.compose.KoinContext
 import org.mathieu.cleanrmapi.ui.core.Destination
@@ -20,36 +21,33 @@ fun App() {
 
 @Composable
 private fun MainContent() {
-
     val navController = rememberNavController()
 
-    //https://developer.android.com/jetpack/compose/navigation?hl=fr
     NavHost(navController = navController, startDestination = "characters") {
 
-        composable(Destination.Characters) { CharactersScreen(navController) }
+        // Définir la route de l'écran des personnages
+        composable(route = "characters") {
+            CharactersScreen(navController = navController)
+        }
 
+        // Correctement passer les arguments de "characterId"
         composable(
-            destination = Destination.CharacterDetails()
+            route = "characterDetails/{characterId}"
         ) { backStackEntry ->
-
+            val characterId = backStackEntry.arguments?.getString("characterId")?.toInt() ?: -1
             CharacterDetailsScreen(
                 navController = navController,
-                id = backStackEntry.arguments?.getInt("characterId") ?: -1
+                id = characterId
             )
-
         }
-
         composable(
-            destination = Destination.EpisodeDetails()
+            route = "episodeDetails/{episodeId}"
         ) { backStackEntry ->
-
+            val episodeId = backStackEntry.arguments?.getString("episodeId")?.toInt() ?: -1
             EpisodeDetailsScreen(
                 navController = navController,
-                id = backStackEntry.arguments?.getInt("episodeId") ?: -1
+                id = episodeId
             )
-
         }
-
     }
-
 }

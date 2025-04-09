@@ -52,7 +52,7 @@ class CharacterDetailsViewModel :
     fun handleAction(action: CharacterDetailsAction) {
         when(action) {
             is CharacterDetailsAction.SelectedEpisode ->
-                sendEvent(Destination.EpisodeDetails(action.episode.id.toString()))
+                sendEvent(Destination.LocationDetails(action.locationId))
         }
     }
 

@@ -3,6 +3,7 @@ package org.mathieu.cleanrmapi.ui.screens.characters
 import org.koin.core.component.inject
 import org.mathieu.cleanrmapi.domain.character.CharacterRepository
 import org.mathieu.cleanrmapi.domain.character.models.Character
+import org.mathieu.cleanrmapi.domain.character.models.CharacterDetailsAction
 import org.mathieu.cleanrmapi.ui.core.Destination
 import org.mathieu.cleanrmapi.ui.core.ViewModel
 import org.mathieu.cleanrmapi.ui.screens.characters.CharactersContracts.ReachedTheBottomOfTheList
@@ -42,8 +43,15 @@ class CharactersViewModel : ViewModel<UiState>(UiState()) {
     }
 
 
-    private fun selectedCharacter(character: Character) =
+    private fun selectedCharacter(character: Character) {
+        // Naviguer vers CharacterDetailsScreen
         sendEvent(Destination.CharacterDetails(character.id.toString()))
+
+        // Passer l'ID de la location pour naviguer vers LocationDetailsScreen
+        val locationId = character.locationId // Assure-toi que l'ID de la location existe dans le modèle Character
+        sendEvent(CharacterDetailsAction.NavigateToLocation(locationId))
+    }
+
 
 
     private fun loadMoreCharacters() =

@@ -140,6 +140,9 @@ android {
 
 dependencies {
 
+    implementation(libs.ui.android)
+    implementation(libs.ui.tooling.preview.android)
+    implementation(libs.navigation.runtime.android)
     // KSP support for Room Compiler.
     listOf(
         "kspAndroid",
