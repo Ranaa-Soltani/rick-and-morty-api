@@ -54,7 +54,7 @@ fun LocationDetailsScreen(
 }
 
 // Preview for LocationDetailsScreen, used to see the UI in design mode
-@Preview(showBackground = true)
+@Preview
 @Composable
 fun PreviewLocationDetailsScreen() {
     val dummyLocation = Location(
