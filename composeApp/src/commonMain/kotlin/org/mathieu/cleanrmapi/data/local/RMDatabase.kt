@@ -15,7 +15,7 @@ import org.mathieu.cleanrmapi.data.local.objects.EpisodeObject
         CharacterObject::class,
         EpisodeObject::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 
@@ -41,7 +41,7 @@ expect object AppDatabaseConstructor : RoomDatabaseConstructor<RMDatabase> {
 fun getRoomDatabase(
     builder: RoomDatabase.Builder<RMDatabase>
 ): RMDatabase = builder
-    .addMigrations()
+    .fallbackToDestructiveMigration(true)
     .fallbackToDestructiveMigrationOnDowngrade(true)
     .setDriver(BundledSQLiteDriver())
     .setQueryCoroutineContext(Dispatchers.IO)

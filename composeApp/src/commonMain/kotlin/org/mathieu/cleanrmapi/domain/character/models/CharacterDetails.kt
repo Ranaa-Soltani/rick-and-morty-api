@@ -24,8 +24,8 @@ data class CharacterDetails(
     val species: String,
     val type: String,
     val gender: CharacterGender,
-    val origin: String,
     val location: String,
+    val origin: String,
     val avatarUrl: String
 )
 
